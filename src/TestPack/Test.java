@@ -1,5 +1,5 @@
 package TestPack;
-import UnionFind.*;
+import SortingAlgorithms.*;
 import java.util.Random;
 import java.util.*;
 import java.lang.*;
@@ -19,75 +19,71 @@ public class Test {
 		}
 		
 	}
-	public static void write(int k,double qf,double qu,double wqu) {
-		x.format("%d,%f,%f,%f\n",k,qf,qu,wqu);
+	public static void write(int k,double a,double b,double c,double d,double e,double f) {
+		x.format("%d,%f,%f,%f,%f,%f,%f\n",k,a,b,c,d,e,f);
+	}
+	public static void write(int k,double a,double b) {
+		x.format("%d,%f,%f\n",k,a,b);
 	}
 	public static void close() {
 		x.close();
 	}
 	public static void main(String args[]) {
-		double qf=0,qu=0,wqu=0;
+		double l1,l2,mer,qui;
 		openfile();
-		x.format("%s,%s,%s,%s\n","DataSize","QuickFind","QuickUnion","WeightedQuickUnio");
-		
-		System.out.println("DataSize  QuickFind  QuickUnion  WeightedQuickUnion");
-		
-		for(int k=100 ; k < 130000000 ; k*=2 ) {
-		
-		QuickFind q = new QuickFind(k);
-		QuickUnion u = new QuickUnion(k);
-		WeightedQuickUnion w = new WeightedQuickUnion(k);
+		x.format("%s,%s,%s\n","DataSize","MergeSort","QuickSort");
+		System.out.println("DataSize  MergeSort  QuickSort");
+		for(int k=100 ; k < 9000000 ; k*=2 ) {
 		Random r = new Random();
-		long l1,l2;
-		//Quick Find Algorithm
-		boolean AC = false;
-		int i1,i2;
-		/*
-	    l1 = System.currentTimeMillis();
-		while (!AC) {
-			i1 = r.nextInt(k);
-			i2 = r.nextInt(k);			
-			if (!q.Connected(i1, i2)) {
-				q.Union(i1, i2);
-			}
-			AC = q.AllConnected();
+		Integer[] M = new Integer[k];
+		Integer[] Q = new Integer[k];
+		for (int i=0 ; i<k;i++) {
+			int n = r.nextInt();
+			/*I[i]=n;
+			S[i]=n;
+			H[i]=n;*/
+			M[i]=n;
+			Q[i]=n;
 		}
-		l2 = System.currentTimeMillis();
-		qf = (l2-l1)*0.001;
+		//insertion sort
+	/*	l1= System.currentTimeMillis();
+		InsertionSort.sort(I);
+		l2= System.currentTimeMillis();
+		ins=(l2-l1)*0.001;
 		
-		//Quick Union Algorithm
+		//selection sort
+		l1= System.currentTimeMillis();
+		SelectionSort.sort(S);
+		l2= System.currentTimeMillis();
+		sel=(l2-l1)*0.001;
 		
-		AC = false;
-		l1 = System.currentTimeMillis();
-		while (!AC) {
-			i1 = r.nextInt(k);
-			i2 = r.nextInt(k);			
-			if (!u.Connected(i1, i2)) {
-				u.Union(i1, i2);
-			}
-			AC = u.AllConnected();
-		}
-		l2 = System.currentTimeMillis();
-		qu = (l2-l1)*0.001;
-		*/
-		//Weighted Quick Union Algorithm
+		//shell sort
+		l1= System.currentTimeMillis();
+		ShellSort.sort(H);
+		l2= System.currentTimeMillis();
+		shel=(l2-l1)*0.001;*/
 		
-		AC = false;
-		l1 = System.currentTimeMillis();
-		while (!AC) {
-			i1 = r.nextInt(k);
-			i2 = r.nextInt(k);			
-			if (!w.Connected(i1, i2)) {
-				w.Union(i1, i2);
-			}
-			AC = w.AllConnected();
-		}
-		l2 = System.currentTimeMillis();
-		wqu = (l2-l1)*0.001;
+		//merge sort
+		l1= System.currentTimeMillis();
+		MergeSort.sort(M);
+		l2= System.currentTimeMillis();
+		mer=(l2-l1)*0.001;
 		
-		System.out.println(k+"      "+qf +"      "+qu+"       "+wqu);
-		write(k, qf, qu, wqu);
-	
+		//Bottom-up merge sort
+	  /*l1= System.currentTimeMillis();
+		MergeSort.bottomUpSort(M2);
+		l2= System.currentTimeMillis();
+		bumer=(l2-l1)*0.001;*/
+		
+		//Quick sort
+		l1= System.currentTimeMillis();
+		QuickSort.sort(Q);
+		l2= System.currentTimeMillis();
+		qui=(l2-l1)*0.001;
+		
+		System.out.println(k+"       "+mer+"       "+qui);
+		write(k,mer,qui);
+		
 		}
 		close();
 }

@@ -12,4 +12,11 @@ package SortingAlgorithms;
 		  arr[i1] = arr[i2];
 		  arr[i2] = dummy;
 	  }
+	  protected static boolean isSorted(Comparable[] a,int first,int last) {
+		  for(int i=first;i<last;i++) {
+			  if (isLess(a[i],a[i+1]))
+				  return false;
+		  }
+		  return true;
+	  }
 }
